@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## add tailwindcss to project => https://tailwindcss.com/docs/guides/angular
+
+
+## install Angular Material : ng add @angular/material 
+## would you like to proceed : yes
+> Indigo/Pink
+>set up global Angular Material typographies styles : yes
+>Include the Angular animation module : Include and enable animations
+
+## install toastr : npm i ngx-toastr
+
+# generate component : ng g c components/login
+# generate service : ng g s services/user
+# generate interface : ng g interface models/user
+# generate environment : ng g environments
+# generate guard : ng g g guards/auth  > canActivate
+# generate interceptor: ng g interceptor interceptor/token
