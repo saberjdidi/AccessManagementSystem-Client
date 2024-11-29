@@ -36,6 +36,10 @@
                             <mat-icon>account_circle</mat-icon>
                             <span>View Profile</span>
                         </button>
+                        <button [routerLink]="['change-password']" mat-menu-item>
+                            <mat-icon>password</mat-icon>
+                            <span>Change Password</span>
+                        </button>
                         <button (click)="logoutFn()" mat-menu-item>
                             <mat-icon>logout</mat-icon>
                             <span>Logout</span>
