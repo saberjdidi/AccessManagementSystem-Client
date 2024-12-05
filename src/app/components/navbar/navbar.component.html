@@ -1,10 +1,11 @@
 <div>
-    <mat-toolbar color="primary" style="padding:10px 40px;">
-        <button mat-icon-button>
+    <mat-toolbar color="primary" style="padding:10px 10px;">
+        <button *ngIf="isLoggedIn()" mat-icon-button (click)="toggleDrawer()">
             <mat-icon>menu</mat-icon>
-        </button>
-        <a routerLink="/">My App</a>
-        <div *ngIf="authService.getUserDetail() as userDetail">
+          </button>
+        <a routerLink="/">Access Management System</a>
+        <!--
+          <div *ngIf="authService.getUserDetail() as userDetail">
             <a *ngIf="userDetail?.roles.includes('Admin')" mat-button routerLink="/users">
                 <mat-icon class="mt-4" style="width: 40px; height: 40px;">groups</mat-icon> Users
             </a>
@@ -13,6 +14,7 @@
                 <mat-icon class="mt-3" style="width: 40px; height: 40px;">settings</mat-icon> Roles
             </a>
         </div>
+        -->
 
         <div class="w-full"></div>
         @if(isLoggedIn()){
@@ -31,7 +33,8 @@
                             </p>
                         </div>
                     </a>
-                    <mat-menu #menu="matMenu">
+                    <button mat-button [matMenuTriggerFor]="profile"><mat-icon>arrow_drop_down</mat-icon></button>
+                    <mat-menu #menu="matMenu" #profile>
                         <button [routerLink]="['profile',userDetail.id]" mat-menu-item>
                             <mat-icon>account_circle</mat-icon>
                             <span>View Profile</span>
@@ -58,4 +61,29 @@
         }
         
     </mat-toolbar>
+
+    <mat-drawer-container autosize>
+        <mat-drawer #drawer mode="side" position="start">
+          <mat-nav-list style="margin: 20px;">
+            <mat-list-item>
+              <button mat-button routerLink="/"><mat-icon>home</mat-icon>Home</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button routerLink="/customer"><mat-icon>person</mat-icon>Customer</button>
+              </mat-list-item>
+            <div *ngIf="authService.getUserDetail()?.roles.includes('Admin')">
+              <mat-list-item>
+                <button mat-button routerLink="/user"><mat-icon>groups</mat-icon>Users</button>
+              </mat-list-item>
+              <mat-list-item>
+                <button mat-button routerLink="/role"><mat-icon>settings</mat-icon>Roles</button>
+              </mat-list-item>
+            </div>
+          </mat-nav-list>
+        </mat-drawer>
+        <mat-drawer-content>
+          <router-outlet></router-outlet>
+        </mat-drawer-content>
+      </mat-drawer-container>
+    
 </div>

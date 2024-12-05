@@ -10,6 +10,9 @@ import { RolesComponent } from './pages/roles/roles.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { CustomerComponent } from './pages/customer/customer.component';
+import { AddCustomerComponent } from './pages/add-customer/add-customer.component';
+import { UserRoleAssignComponent } from './pages/user-role-assign/user-role-assign.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -19,19 +22,29 @@ export const routes: Routes = [
     {path: 'reset-password', component: ResetPasswordComponent},
     {path: 'change-password', component: ChangePasswordComponent, canActivate: [authGuard]},
     {path: 'profile/:id', component: ProfileComponent, canActivate: [authGuard]},
-    {path: 'users',
+    {path: 'customer', component: CustomerComponent, canActivate: [authGuard]},
+    {path:'customer/add', component:AddCustomerComponent, canActivate:[authGuard]},
+    {path:'customer/edit/:code',component:AddCustomerComponent,canActivate:[authGuard]},
+    {path: 'user',
      component: UsersComponent, 
      canActivate: [roleGuard],
     data:{
       roles: ['Admin']
     }
    },
-   {path: 'roles',
+   {path: 'role',
     component: RolesComponent, 
     canActivate: [roleGuard],
    data:{
      roles: ['Admin']
    }
   },
-  { path: '**', redirectTo: '' }
+  {path: 'userroleassign',
+   component: UserRoleAssignComponent, 
+   canActivate: [roleGuard],
+  data:{
+    roles: ['Admin']
+  }
+ },
+  { path: '**', redirectTo: 'login' }
 ];

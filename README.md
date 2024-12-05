@@ -37,7 +37,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## install toastr : npm i ngx-toastr
 
-# generate component : ng g c components/login
+# generate component : ng g c components/login--skip-tests
 # generate service : ng g s services/user
 # generate interface : ng g interface models/user
 # generate environment : ng g environments

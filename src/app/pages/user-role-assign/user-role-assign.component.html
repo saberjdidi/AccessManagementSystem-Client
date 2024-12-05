@@ -1,0 +1,60 @@
+<form [formGroup]="roleform" (ngSubmit)="Saveroles()" class="m-2">
+    <mat-card>
+        <mat-card-header class="items-center justify-center">
+            <h1 class="text-2xl font-semibold text-center">User Role Assignment</h1>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <mat-form-field class="w-1/2">
+            <mat-label>Select user Role</mat-label>
+            <mat-select formControlName="userrole" (selectionChange)="rolechange($event)" >
+                @for(item of rolelist;track item){
+                    <mat-option value="{{item.name}}">{{item.name}}</mat-option>
+                }
+            </mat-select>
+          </mat-form-field>
+    
+          <mat-card>
+            <mat-card-content>
+    
+                <table style="width: 100%;" formArrayName="access">
+                    <thead>
+                        <tr>
+                            <th>Menu name</th>
+                            <th>Have view</th>
+                            <th>Have Add</th>
+                            <th>Have Edit</th>
+                            <th>Have Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of getrows.controls;let i=index" [formGroupName]="i">
+                            <td>{{item.value.menucode}}</td>
+                            <td>
+                                <mat-checkbox formControlName="haveview"></mat-checkbox>
+                            </td>
+                            <td>
+                                <mat-checkbox formControlName="haveadd"></mat-checkbox>
+                            </td>
+                            <td>
+                                <mat-checkbox formControlName="haveedit"></mat-checkbox>
+                            </td>
+                            <td>
+                                <mat-checkbox formControlName="havedelete"></mat-checkbox>
+                            </td>
+    
+                        </tr>
+                    </tbody>
+    
+                </table>
+    
+            </mat-card-content>
+          </mat-card>
+    
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="w-full border border-slate-200 rounded-md disabled:bg-purple-400 py-2 px-3 bg-purple-700 text-white font-bold w-1/4 mt-3" 
+            type="submit" mat-raised-button color="primary" style="margin-left: 35%; margin-right: 35%;">Save</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

@@ -47,7 +47,11 @@ export class LoginComponent implements OnInit {
           duration: 5000,
           horizontalPosition: 'center',
         });
-        this.router.navigate(['/']);
+        //this.router.navigate(['/']);
+        //this.router.navigate(['/'], { state: { reload: true } });
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        });
       },
       error: (error) => {
         this.matSnackBar.open(error.error.message, 'Close', {

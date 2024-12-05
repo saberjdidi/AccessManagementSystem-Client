@@ -6,5 +6,6 @@ export interface UserDetail {
   phoneNumber: string;
   twoFactorEnabled: boolean;
   phoneNumberConfirmed: boolean;
+  lockoutEnabled: boolean;
   accessFailedCount: number;
 }

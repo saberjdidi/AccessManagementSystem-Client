@@ -1,0 +1,50 @@
+<div class="h-screen flex items-center justify-center">
+<form class="shadow-md rounded-md p-5 bg-white w-1/2" [formGroup]="customerform" (ngSubmit)="saveCustomer()">
+
+    <mat-card>
+        <mat-card-header class="mb-4 justify-content-center">
+          <h1 class="text-center font-bold py-2">{{title}}</h1>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-form-field class="w-full">
+                <mat-label>Code</mat-label>
+                <input formControlName="code" matInput />
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Name</mat-label>
+                <input formControlName="name" matInput />
+            </mat-form-field>
+
+            <mat-form-field class="w-full mat-50">
+                <mat-label>Email</mat-label>
+                <input formControlName="email"  matInput />
+            </mat-form-field>
+            <mat-form-field class="w-full mat-50">
+                <mat-label>Phone</mat-label>
+                <input formControlName="phone"  matInput />
+            </mat-form-field>
+           
+            <mat-form-field class="w-full">
+                <mat-label>Credit Limit</mat-label>
+                <input formControlName="creditlimit" type="number" matInput />
+            </mat-form-field>
+            <div class="div-50">
+                <mat-checkbox formControlName="status">Is Active</mat-checkbox>
+            </div>
+            
+        </mat-card-content>
+        <mat-card-actions class="items-center">
+            <div class="div-50 p-2" style="margin-right: 20px;">
+                <button type="submit" mat-raised-button color="primary">Save</button>
+            </div>
+            <div class="div-50">
+                <a routerLink="/customer" mat-raised-button color="accent">Cancel</a>
+            </div>
+            
+
+        </mat-card-actions>
+    </mat-card>
+
+</form>
+</div>

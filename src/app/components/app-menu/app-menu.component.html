@@ -1,0 +1,95 @@
+@if(showmenu){
+    <div>
+        <mat-toolbar color="primary" class="mat-elevation-z8">
+            <button mat-icon-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <a routerLink="/"><span>Access Management System</span></a>
+
+            <div class="w-full"></div>
+            
+            @if(isLoggedIn()){
+                <span class="example-spacer"></span>
+                <a [matMenuTriggerFor]="menu" class="flex gap2 cursor-pointer items-center">
+                  <div class="bg-red-400 text-white font-bold shadow-md rounded-full w-5 h-5 p-5 m-2 flex justify-center items-center">
+                        {{fullName[0].toUpperCase()}}
+                    </div>  
+                    <div class="text-white flex flex-col">
+                        <h1 class="p-0 m-0 font-medium">
+                            {{fullName}}
+                        </h1>
+                        <p class="p-0 m-0 font-medium text-xs">
+                            {{roles}}
+                        </p>
+                    </div>
+                </a>
+               
+                <button mat-button [matMenuTriggerFor]="profile"><mat-icon>arrow_drop_down</mat-icon></button>
+                <mat-menu #menu="matMenu" #profile>
+                    <button [routerLink]="['profile',authService.getUserDetail()?.id]" mat-menu-item>
+                        <mat-icon>account_circle</mat-icon>
+                        <span>View Profile</span>
+                    </button>
+                    <button [routerLink]="['change-password']" mat-menu-item>
+                        <mat-icon>password</mat-icon>
+                        <span>Change Password</span>
+                    </button>
+                    <button (click)="logoutFn()" mat-menu-item>
+                        <mat-icon>logout</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            }
+            @else {
+                <div>
+                    <div class="flex gap5 items-center">
+                        <a mat-button routerLink="/login">Login</a>
+                        <a mat-button routerLink="/register">Register</a>
+                    </div>
+                </div>
+            }
+            
+        </mat-toolbar>
+        <mat-drawer-container autosize>
+            <mat-drawer #drawer opened="true" mode="side" position="start">
+    
+                <mat-nav-list>
+                    <mat-list-item>
+                        <button mat-button routerLink=""><mat-icon>home</mat-icon>Home</button>
+                    </mat-list-item>
+                    @for(item of menulist;track item){
+                        <mat-list-item>
+                            <button mat-button routerLink="{{item.code}}">
+                                @if(item.code == 'customer'){
+                                    <mat-icon>person</mat-icon>
+                                }
+                                @else if(item.code == 'user'){
+                                    <mat-icon>groups</mat-icon>
+                                }
+                                @else if(item.code == 'role'){
+                                    <mat-icon>settings</mat-icon>
+                                }
+                                @else {
+                                    <mat-icon>home</mat-icon>
+                                }
+                                
+                                {{item.name}}
+                            </button>
+                        </mat-list-item>
+                    } 
+                </mat-nav-list>
+    
+            </mat-drawer>
+            <mat-drawer-content>
+                <div style="text-align: center;min-height: 600px;">
+                    <router-outlet></router-outlet>
+                </div>
+            </mat-drawer-content>
+    
+        </mat-drawer-container>
+    </div>
+}@else{
+    <div style="text-align: center;min-height: 600px;">
+        <router-outlet></router-outlet>
+    </div> 
+}
