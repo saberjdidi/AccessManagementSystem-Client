@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MenuPermission } from '../../interfaces/menu-permission';
 import { RoleService } from '../../services/role.service';
 import { AuthService } from '../../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-customer',
@@ -51,20 +52,31 @@ export class CustomerComponent implements OnInit {
     //let role = localStorage.getItem('userrole') as string;
     let userDetail = this.authService.getUserDetail();
     let roles = userDetail?.roles;
-    this.roleService.getMenuPermission(roles, 'customer').subscribe(item => {
+    this.roleService.getMenuPermission(roles, 'customer').subscribe(data => {
 
-      this._permission = item;
+      this._permission = data;
       console.log(this._permission);
     })
   }
 
   Loadcustomer() {
-    this.service.getAll().subscribe(item => {
-      this.customerlist = item;
+    this.service.getAll().subscribe({
+      next: data => {
+        this.customerlist = data;
       this.datasource = new MatTableDataSource<Customer>(this.customerlist);
       this.datasource.paginator = this.paginator;
       this.datasource.sort = this.sort;
-    })
+      },
+      error: (error: HttpErrorResponse) => {
+
+        this.snackBar.open(error.error.message, 'Ok', {
+          duration: 5000,
+          horizontalPosition: 'center',
+        });
+        //this.errorMessage = error.error;
+        console.log(`Error : ${error.error.message}`)
+      }
+     })
   }
 
   editFn(code: string) {

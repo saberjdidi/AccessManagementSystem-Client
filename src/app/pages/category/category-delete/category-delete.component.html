@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-header class="font-bold text-center">
+        Delete Category
+    </mat-card-header>
+
+    <mat-card-content>
+       <h3>Are you sure to delete this category ?</h3>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <div class="div-50 m-2">
+            <a (click)="deleteFn()" mat-raised-button color="primary">Delete</a>
+        </div>
+        <div class="div-50 m-2">
+            <a (click)="closePopup()" mat-raised-button color="accent">Cancel</a>
+        </div>
+        
+
+    </mat-card-actions>
+</mat-card>

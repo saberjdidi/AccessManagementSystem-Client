@@ -1,0 +1,26 @@
+<div class="h-screen flex items-center justify-center">
+    <form class="shadow-md rounded-md p-5 bg-white w-1/2" [formGroup]="categoryForm" (ngSubmit)="onSubmitFn()">
+    
+        <mat-card>
+            <mat-card-header class="mb-4 justify-content-center">
+              <h1 class="text-center font-bold py-2">{{title}}</h1>
+            </mat-card-header>
+            <mat-card-content>
+    
+                <mat-form-field class="w-full">
+                    <mat-label>Name</mat-label>
+                    <input formControlName="name" matInput />
+                </mat-form-field>
+                
+            </mat-card-content>
+            <mat-card-actions class="items-center">
+                <div class="div-50 p-2" style="margin-right: 20px;">
+                    <button type="submit" mat-raised-button color="primary">Save</button>
+                </div>
+                <div class="div-50">
+                    <a routerLink="/category" mat-raised-button color="accent">Cancel</a>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

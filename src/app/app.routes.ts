@@ -13,6 +13,8 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { CustomerComponent } from './pages/customer/customer.component';
 import { AddCustomerComponent } from './pages/add-customer/add-customer.component';
 import { UserRoleAssignComponent } from './pages/user-role-assign/user-role-assign.component';
+import { CategoryListComponent } from './pages/category/category-list/category-list.component';
+import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -24,7 +26,10 @@ export const routes: Routes = [
     {path: 'profile/:id', component: ProfileComponent, canActivate: [authGuard]},
     {path: 'customer', component: CustomerComponent, canActivate: [authGuard]},
     {path:'customer/add', component:AddCustomerComponent, canActivate:[authGuard]},
-    {path:'customer/edit/:code',component:AddCustomerComponent,canActivate:[authGuard]},
+    {path:'customer/edit/:code',component:AddCustomerComponent, canActivate:[authGuard]},
+    {path:'category',component:CategoryListComponent, canActivate:[authGuard]},
+    { path: 'category/add', component: CategoryFormComponent, canActivate:[authGuard] },
+    { path: 'category/edit/:id', component: CategoryFormComponent, canActivate:[authGuard] },
     {path: 'user',
      component: UsersComponent, 
      canActivate: [roleGuard],
