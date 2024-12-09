@@ -1,0 +1,53 @@
+<div class="h-screen flex items-center justify-center">
+    <form class="shadow-md rounded-md p-5 bg-white w-1/2" [formGroup]="productForm" (ngSubmit)="onSubmitFn()" enctype="multipart/form-data">
+    
+        <mat-card>
+            <mat-card-header class="mb-4 justify-content-center">
+              <h1 class="text-center font-bold py-2">{{title}}</h1>
+            </mat-card-header>
+            <mat-card-content>
+    
+                <mat-form-field class="w-full">
+                    <mat-label>Name</mat-label>
+                    <input formControlName="name" matInput />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Description</mat-label>
+                    <input formControlName="description" matInput />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Price</mat-label>
+                    <input formControlName="price" matInput type="number" />
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="categoryId">
+                      @for (item of categories$ | async; track item.id){
+                          <mat-option [value]="item.id">{{item.name}}</mat-option>
+                      }
+                    </mat-select>
+                </mat-form-field>
+
+
+                <label for="file">Image:</label>
+               <input id="file" type="file" (change)="onFileSelected($event)" required />
+                <!--<mat-form-field class="w-full">
+                    <mat-label>Image</mat-label>
+                    <input id="file" type="file" (change)="onFileSelected($event)" required />
+                </mat-form-field>  -->
+                
+            </mat-card-content>
+            <mat-card-actions class="items-center">
+                <div class="div-50 p-2" style="margin-right: 20px;">
+                    <button type="submit" mat-raised-button color="primary">Save</button>
+                </div>
+                <div class="div-50">
+                    <a routerLink="/product" mat-raised-button color="accent">Cancel</a>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

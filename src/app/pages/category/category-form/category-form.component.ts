@@ -17,7 +17,7 @@ import { formatDate } from '@angular/common';
 })
 export class CategoryFormComponent {
 
-  categoryForm: FormGroup;
+  //categoryForm: FormGroup;
   title = 'Add Category';
   snackBar = inject(MatSnackBar);
 
@@ -27,10 +27,7 @@ export class CategoryFormComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.categoryForm = this.fb.group({
-      id: [0],
-      name: ['', Validators.required],
-    });
+    
   }
 
   ngOnInit(): void {
@@ -43,55 +40,61 @@ export class CategoryFormComponent {
     }
   }
 
+  categoryForm = this.fb.group({
+    id: [0],
+    name: this.fb.control('', Validators.required)
+  });
+
   onSubmitFn(): void {
-
-    let currentDate = new Date();
-    const creatAt = formatDate(currentDate, 'yyyy-MM-ddTHH:mm:ss', 'en-US');
-
-    let objCategory: Category = {
-      id: this.categoryForm.value.id as number,
-      name: this.categoryForm.value.name as string,
-      createdAt: creatAt as string
-    }
-
-    if (this.categoryForm.value.id) {
-      this.categoryService.updateCategory(objCategory).subscribe({
-        next: data => {
-          this.snackBar.open('Created successfully', 'Ok', {
-            duration: 3000,
-            horizontalPosition: 'center',
-          });
-          this.router.navigate(['/category']);
-        },
-        error: (error: HttpErrorResponse) => {
+    if (this.categoryForm.valid) {
+      let currentDate = new Date();
+      const creatAt = formatDate(currentDate, 'yyyy-MM-ddTHH:mm:ss', 'en-US');
   
-          this.snackBar.open(error.error.message, 'Ok', {
-            duration: 5000,
-            horizontalPosition: 'center',
-          });
-          //this.errorMessage = error.error;
-          console.log(`Error : ${error.error.message}`)
-        }
-       });
-    } else {
-      this.categoryService.addCategory(objCategory).subscribe({
-        next: data => {
-          this.snackBar.open('Updated successfully', 'Ok', {
-            duration: 3000,
-            horizontalPosition: 'center',
-          });
-          this.router.navigate(['/category']);
-        },
-        error: (error: HttpErrorResponse) => {
+      let objCategory: Category = {
+        id: this.categoryForm.value.id as number,
+        name: this.categoryForm.value.name as string,
+        createdAt: creatAt as string
+      }
   
-          this.snackBar.open(error.error.message, 'Ok', {
-            duration: 5000,
-            horizontalPosition: 'center',
-          });
-          //this.errorMessage = error.error;
-          console.log(`Error : ${error.error.message}`)
-        }
-       });
+      if (this.categoryForm.value.id) {
+        this.categoryService.updateCategory(objCategory).subscribe({
+          next: data => {
+            this.snackBar.open('Created successfully', 'Ok', {
+              duration: 3000,
+              horizontalPosition: 'center',
+            });
+            this.router.navigate(['/category']);
+          },
+          error: (error: HttpErrorResponse) => {
+    
+            this.snackBar.open(error.error.message, 'Ok', {
+              duration: 5000,
+              horizontalPosition: 'center',
+            });
+            //this.errorMessage = error.error;
+            console.log(`Error : ${error.error.message}`)
+          }
+         });
+      } else {
+        this.categoryService.addCategory(objCategory).subscribe({
+          next: data => {
+            this.snackBar.open('Updated successfully', 'Ok', {
+              duration: 3000,
+              horizontalPosition: 'center',
+            });
+            this.router.navigate(['/category']);
+          },
+          error: (error: HttpErrorResponse) => {
+    
+            this.snackBar.open(error.error.message, 'Ok', {
+              duration: 5000,
+              horizontalPosition: 'center',
+            });
+            //this.errorMessage = error.error;
+            console.log(`Error : ${error.error.message}`)
+          }
+         });
+      }
     }
   }
 }
