@@ -48,3 +48,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Account : 
 email: saber@gmail.com | ahmed@gmail.com
 pwd : Saber1234**      | Ahmed1234**
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 17.3.11
+Node: 20.11.0
+Package Manager: npm 10.2.4
+OS: win32 x64
