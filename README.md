@@ -43,3 +43,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # generate environment : ng g environments
 # generate guard : ng g g guards/auth  > canActivate
 # generate interceptor: ng g interceptor interceptor/token
+
+
+# Account : 
+email: saber@gmail.com | ahmed@gmail.com
+pwd : Saber1234**      | Ahmed1234**
